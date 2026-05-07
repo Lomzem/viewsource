@@ -1,0 +1,15 @@
+{
+    "name": "viewsource",
+    "short_name": "viewsource",
+    "description": "view html without ads",
+    "icons": [
+        {
+            "src": "/assets/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ],
+    "theme_color": "#006045",
+    "background_color": "#1d161e",
+    "display": "standalone"
+}
