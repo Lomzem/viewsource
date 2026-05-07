@@ -32,6 +32,7 @@
     "prettier-plugin-svelte": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "shadcn-svelte": "^1.2.7",
+    "shiki": "^4.0.2",
     "svelte": "^5.55.2",
     "svelte-check": "^4.4.6",
     "tailwind-merge": "^3.5.0",
@@ -41,5 +42,8 @@
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.1",
     "vite": "^8.0.7"
+  },
+  "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "^5.2.8"
   }
 }

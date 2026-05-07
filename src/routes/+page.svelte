@@ -2,14 +2,26 @@
   import Button from "$lib/components/ui/button/button.svelte"
   import Input from "$lib/components/ui/input/input.svelte"
   import { enhance } from "$app/forms"
-  import { IconLoader2 } from "@tabler/icons-svelte"
+  import { IconBrandGithubFilled, IconLoader2 } from "@tabler/icons-svelte"
+  import CodeBlock from "./CodeBlock.svelte"
+
   let fetchData: Promise<string> | undefined = $state()
 </script>
 
-<main class="grid h-dvh place-content-center place-items-center p-8">
+<main class="grid min-h-dvh grid-cols-1 place-content-center p-8">
+  <a
+    href="https://github.com/Lomzem/viewsource"
+    target="_blank"
+    rel="noreferrer"
+    aria-label="View on GitHub"
+    class="absolute top-8 left-12 flex -translate-x-1/2 text-muted-foreground transition hover:text-foreground"
+  >
+    <IconBrandGithubFilled size={32} />
+  </a>
+
   <h1 class="text-center font-heading text-5xl font-black text-pretty">put the html in the bag</h1>
   <form
-    class="mt-8 flex w-full flex-wrap gap-2"
+    class="mt-8 flex w-full flex-col gap-3 place-self-center sm:w-3xl sm:flex-row sm:items-center"
     method="POST"
     use:enhance={({ cancel, formData }) => {
       cancel()
@@ -20,17 +32,23 @@
     }}
   >
     <Input
-      class="grow overflow-clip py-8 text-xl"
+      class="flex-1 overflow-clip py-8 text-xl md:text-2xl
+      "
       type="url"
       name="url"
       autofocus
       required
       placeholder="https://"
     />
-    <Button class="grow cursor-pointer py-8 text-2xl" type="submit">View Source</Button>
+    <Button class="w-full cursor-pointer py-8 text-2xl sm:w-auto" type="submit">View Source</Button>
   </form>
-  {#await fetchData}
-    <IconLoader2 size={64} class="mt-8 animate-spin text-foreground" />
-    <p class="mt-2 text-2xl">lemme get that for you :)</p>
-  {/await}
+
+  {#if fetchData}
+    {#await fetchData}
+      <IconLoader2 size={64} class="mt-8 animate-spin place-self-center text-foreground" />
+      <p class="mt-2 place-self-center text-2xl">lemme get that for you :)</p>
+    {:then html}
+      <CodeBlock code={html} />
+    {/await}
+  {/if}
 </main>
